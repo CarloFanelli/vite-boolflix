@@ -7,6 +7,7 @@
           <input type="text" v-model="state.query">
           <button type="submit">cerca</button>
         </form>
+        <span>hai cercato {{ state.querySpan }}</span>
       </div>
     </div>
     <div class="row">
