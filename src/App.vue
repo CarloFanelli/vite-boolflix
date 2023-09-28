@@ -36,6 +36,7 @@
 
         <i class="fa-solid fa-star"></i>
 
+
       </div>
     </div>
   </div>
