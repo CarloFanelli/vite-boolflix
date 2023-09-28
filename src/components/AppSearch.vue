@@ -15,12 +15,16 @@ export default {
 <template>
     <div class="search">
 
-        <form action="" @submit.prevent="$emit('performSearch')">
+        <form action="" @submit.prevent="$emit('performSearch')" class="">
 
-            <input type="text" v-model="state.query">
-            <button type="submit">cerca</button>
+            <input type="text" v-model="state.query" class="w-50 mx-2">
+            <button type="submit" class="text-uppercase">cerca</button>
         </form>
-        <span class="text-start">hai cercato {{ state.querySpan }}</span>
+        <div class="text-center">
+
+            <span class="text-start" v-show="state.querySpan != ''">hai cercato {{ state.querySpan }}</span>
+
+        </div>
     </div>
 </template>
 

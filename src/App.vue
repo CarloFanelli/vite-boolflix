@@ -66,4 +66,10 @@ export default {
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+@use './assets/scss/partials/variables' as *;
+
+body {
+  background-color: $bf_bg;
+}
+</style>

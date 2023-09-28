@@ -1,3 +1,7 @@
 @use 'bootstrap';
 
 @use '../../../node_modules/font-awesome/css/font-awesome.css' as *;
+
+@use './partials/variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@200;400&display=swap');
