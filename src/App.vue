@@ -11,10 +11,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-3 my-2 p-3 border" v-for="film in state.filmList">
+      <div class="col-3 my-2 p-3 border" v-for="film in    state.filmList   ">
         <p>titolo originale : {{ film.original_title }}</p>
         <p>titolo : {{ film.title }}</p>
         <p>lingua : {{ film.original_language }}</p>
+        <img width="100" :alt="film.original_language"
+          :src="state.baseFlagUrl + (film.original_language === 'en' ? film.original_language = 'gb' : film.original_language).toUpperCase() + '.svg'" />
+
         <p>voto : {{ film.vote_average }}</p>
       </div>
     </div>
@@ -27,7 +30,7 @@ import { state } from './state.js'
 export default {
   data() {
     return {
-      state
+      state,
     }
   },
   created() {

@@ -6,6 +6,8 @@ export const state = reactive({
     query: '',
     querySpan: '',
     filmList: null,
+    baseFlagUrl: 'http://purecatamphetamine.github.io/country-flag-icons/3x2/',
+
 
     fetchData() {
         axios.get(this.baseURL + `&query=${this.query}`)
