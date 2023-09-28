@@ -12,12 +12,13 @@ export const state = reactive({
 
 
     fetchData() {
+        /* film */
         axios.get(this.baseFilmURL + `&query=${this.query}`)
             .then(response => {
                 //console.log('response...', response);
                 this.querySpan = this.query;
                 this.query = '';
-                //console.log(response.data.results);
+                console.log('film:', response.data.results);
                 this.filmList = response.data.results;
 
             })
@@ -25,12 +26,13 @@ export const state = reactive({
                 console.log('error : ', error);
             })
 
+        /* serie tv */
         axios.get(this.baseSeriesURL + `&query=${this.query}`)
             .then(response => {
-                console.log('response...', response);
+                //console.log('response...', response);
                 this.querySpan = this.query;
                 this.query = '';
-                console.log(response.data.results);
+                console.log('serie tv: ', response.data.results);
                 this.tvList = response.data.results;
 
             })
