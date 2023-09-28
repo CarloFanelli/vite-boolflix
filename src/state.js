@@ -16,8 +16,6 @@ export const state = reactive({
         axios.get(this.baseFilmURL + `&query=${this.query}`)
             .then(response => {
                 //console.log('response...', response);
-                this.querySpan = this.query;
-                this.query = '';
                 console.log('film:', response.data.results);
                 this.filmList = response.data.results;
 
@@ -39,6 +37,10 @@ export const state = reactive({
             .catch(error => {
                 console.log('error : ', error);
             })
+
+        /* out from axios because .then it's asinc and start only when it recive datas  */
+        this.querySpan = this.query;
+
     }
 
 
