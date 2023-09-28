@@ -11,10 +11,10 @@
     </div>
     <div class="row">
       <div class="col-3 my-2 p-3 border" v-for="film in state.filmList">
-        <span>titolo originale : {{ film.original_title }}</span>
-        <span>titolo : {{ film.title }}</span>
-        <span>lingua : {{ film.original_language }}</span>
-        <span>voto : {{ film.vote_average }}</span>
+        <p>titolo originale : {{ film.original_title }}</p>
+        <p>titolo : {{ film.title }}</p>
+        <p>lingua : {{ film.original_language }}</p>
+        <p>voto : {{ film.vote_average }}</p>
       </div>
     </div>
   </div>
@@ -30,7 +30,6 @@ export default {
     }
   },
   created() {
-    state.query = 'toy story'
     state.fetchData();
   }
 }
