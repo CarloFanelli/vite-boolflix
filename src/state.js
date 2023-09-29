@@ -10,7 +10,7 @@ export const state = reactive({
     filmList: null,
     tvList: null,
     baseFlagUrl: 'http://purecatamphetamine.github.io/country-flag-icons/3x2/',
-    baseImgUrl: 'https://image.tmdb.org/t/p/w500/',
+    baseImgUrl: 'https://image.tmdb.org/t/p/w780/',
 
 
     fetchData() {
@@ -23,8 +23,9 @@ export const state = reactive({
 
                 for (let i = 0; i < this.filmList.length; i++) {
 
+                    /* actors */
                     axios
-                        .get(`https://api.themoviedb.org/3/movie/${this.filmList[i].id}/credits?api_key=f09ece8e1bf00a0af6a649c3ccfd6bfa`)
+                        .get(`https://api.themoviedb.org/3/movie/${this.filmList[i].id}/credits?api_key=${this.api_key}`)
                         .then(response => {
                             //console.log('cast ', this.filmList[i].title, response.data.cast);
 
@@ -39,8 +40,28 @@ export const state = reactive({
 
                             //console.log(cast);
                             this.filmList[i].cast = cast
-                            console.log(this.filmList);
-                        })
+                            //console.log(this.filmList);
+
+                        });
+
+                    /* genres */
+                    axios
+                        .get(`https://api.themoviedb.org/3/movie/${this.filmList[i].id}?api_key=${this.api_key}`)
+                        .then(response => {
+                            //console.log('cast ', this.filmList[i].title, response.data.cast);
+
+                            let genres = [];
+
+                            for (let j = 0; j < response.data.genres.length; j++) {
+
+                                //console.log(response.data.genres[j].name);
+                                genres.push(response.data.genres[j].name)
+
+                            }
+                            console.log(genres);
+                            this.filmList[i].genres = genres
+
+                        });
                 }
 
             })
@@ -59,8 +80,9 @@ export const state = reactive({
 
                 for (let i = 0; i < this.tvList.length; i++) {
 
+                    /* actors */
                     axios
-                        .get(`https://api.themoviedb.org/3/tv/${this.tvList[i].id}/credits?api_key=f09ece8e1bf00a0af6a649c3ccfd6bfa`)
+                        .get(`https://api.themoviedb.org/3/tv/${this.tvList[i].id}/credits?api_key=${this.api_key}`)
                         .then(response => {
                             //console.log('cast ', this.tvList[i].title, response.data.cast);
 
@@ -75,11 +97,34 @@ export const state = reactive({
 
                             //console.log(cast);
                             this.tvList[i].cast = cast
-                            console.log(this.tvList);
                         })
+
+                    /* genres */
+                    axios
+                        .get(`https://api.themoviedb.org/3/tv/${this.tvList[i].id}?api_key=${this.api_key}`)
+                        .then(response => {
+                            //console.log('cast ', this.filmList[i].title, response.data.cast);
+
+                            let genres = [];
+
+                            for (let j = 0; j < response.data.genres.length; j++) {
+
+                                //console.log(response.data.genres[j].name);
+                                genres.push(response.data.genres[j].name)
+
+                            }
+                            //console.log(genres);
+                            this.tvList[i].genres = genres
+
+                        });
                 }
 
-            })
+                console.log(this.tvList);
+
+            }
+
+
+            )
             .catch(error => {
                 console.log('error : ', error);
             })

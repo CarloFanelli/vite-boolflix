@@ -119,6 +119,11 @@ export default {
                     </div>
                 </div>
 
+                <div class="genres py-3">
+                    <h6>GENRES:</h6>
+                    <span v-for=" genre in show.genres"> {{ genre }}&nbsp </span>
+                </div>
+
 
                 <div class="vote d-flex justify-content-center align-items-center gap-2 py-2">
                     <p class="m-0">voto : </p>
@@ -135,7 +140,7 @@ export default {
 
 .my_card {
 
-    height: 450px;
+    height: 500px;
     position: relative;
 
     .type {
@@ -198,7 +203,7 @@ export default {
             align-items: center;
             background: $type_bg;
             border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(5.3px);
             -webkit-backdrop-filter: blur(5.3px);
             border: 1px solid rgba(255, 0, 0, 0.16);
