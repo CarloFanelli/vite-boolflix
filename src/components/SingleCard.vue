@@ -56,9 +56,10 @@ export default {
 </script>
 
 <template>
-    <div class="col-3 my-2 position-relative my_card">
+    <div class="col-4 my-2 position-relative my_card">
 
-        <div :style="{ backgroundImage: `url(${state.baseImgUrl}${show.poster_path})` }" class="front">
+        <div :style="((state.poster_path !== null) ? { backgroundImage: `url(${state.baseImgUrl}${show.poster_path})` } : { backgroundImage: `url(https://il-cubo.it/images/cover19.jpg)` })"
+            class="front">
 
             <div class="type d-flex justify-content-evenly align-items-center">
 
@@ -109,19 +110,23 @@ export default {
                     <h4>{{ show.original_language }}</h4>
                 </div>
 
+                <div class="cast d-flex justify-content-between align-items-center  gap-3">
+                    <h6>CAST:</h6>
+                    <div>
+                        <p class="m-0" v-for="(actor, i) in show.cast">
+                            <span v-if="i < 5">{{ actor }}</span>
+                        </p>
+                    </div>
+                </div>
 
 
-                <div class="vote d-flex justify-content-center align-items-center gap-2">
+                <div class="vote d-flex justify-content-center align-items-center gap-2 py-2">
                     <p class="m-0">voto : </p>
                     <i v-for="  star   in   (getVote(show.vote_average))  " class="fa fa-star"></i>
                     <i v-for="  star   in   (5 - getVote(show.vote_average))  " class="fa fa-star-o"></i>
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 </template>
 
@@ -181,6 +186,8 @@ export default {
         display: block;
         border-radius: 50px;
         text-transform: uppercase;
+        background-position: center;
+        background-size: cover;
 
         .content {
             rotate: -5deg;

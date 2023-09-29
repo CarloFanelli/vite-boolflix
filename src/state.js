@@ -18,8 +18,30 @@ export const state = reactive({
         axios.get(this.baseFilmURL + `api_key=${this.api_key}` + `&query=${this.query}`)
             .then(response => {
                 //console.log('response...', response);
-                console.log('film:', response.data.results);
+                //console.log('film:', response.data.results);
                 this.filmList = response.data.results;
+
+                for (let i = 0; i < this.filmList.length; i++) {
+
+                    axios
+                        .get(`https://api.themoviedb.org/3/movie/${this.filmList[i].id}/credits?api_key=f09ece8e1bf00a0af6a649c3ccfd6bfa`)
+                        .then(response => {
+                            //console.log('cast ', this.filmList[i].title, response.data.cast);
+
+                            let cast = [];
+
+                            for (let j = 0; j < response.data.cast.length; j++) {
+
+                                //console.log(response.data.cast[j]);
+                                cast.push(response.data.cast[j].name)
+
+                            }
+
+                            //console.log(cast);
+                            this.filmList[i].cast = cast
+                            console.log(this.filmList);
+                        })
+                }
 
             })
             .catch(error => {
@@ -32,7 +54,7 @@ export const state = reactive({
                 //console.log('response...', response);
                 this.querySpan = this.query;
                 this.query = '';
-                console.log('serie tv: ', response.data.results);
+                //console.log('serie tv: ', response.data.results);
                 this.tvList = response.data.results;
 
             })
