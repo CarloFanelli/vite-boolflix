@@ -10,6 +10,7 @@ export const state = reactive({
     filmList: null,
     tvList: null,
     baseFlagUrl: 'http://purecatamphetamine.github.io/country-flag-icons/3x2/',
+    baseImgUrl: 'https://image.tmdb.org/t/p/w500/',
 
 
     fetchData() {
@@ -26,7 +27,7 @@ export const state = reactive({
             })
 
         /* serie tv */
-        axios.get(this.baseSeriesURL + `&query=${this.query}`)
+        axios.get(this.baseSeriesURL + `api_key=${this.api_key}` + `&query=${this.query}`)
             .then(response => {
                 //console.log('response...', response);
                 this.querySpan = this.query;
