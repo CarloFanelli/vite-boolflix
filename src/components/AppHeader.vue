@@ -21,7 +21,7 @@ export default {
 
 <template>
     <div class="container">
-        <div class="row py-2">
+        <div class="row py-2 align-items-center">
 
             <AppLogo class="w-50"></AppLogo>
             <AppSearch @perform-search="searchFilmAndSeries" class="w-50 text-end"></AppSearch>
