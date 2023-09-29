@@ -2,8 +2,9 @@ import { reactive } from "vue";
 import axios from '../node_modules/axios'
 
 export const state = reactive({
-    baseFilmURL: 'https://api.themoviedb.org/3/search/movie?api_key=f09ece8e1bf00a0af6a649c3ccfd6bfa',
-    baseSeriesURL: 'https://api.themoviedb.org/3/search/tv?api_key=f09ece8e1bf00a0af6a649c3ccfd6bfa',
+    baseFilmURL: 'https://api.themoviedb.org/3/search/movie?',
+    baseSeriesURL: 'https://api.themoviedb.org/3/search/tv?',
+    api_key: 'f09ece8e1bf00a0af6a649c3ccfd6bfa',
     query: '',
     querySpan: '',
     filmList: null,
@@ -13,7 +14,7 @@ export const state = reactive({
 
     fetchData() {
         /* film */
-        axios.get(this.baseFilmURL + `&query=${this.query}`)
+        axios.get(this.baseFilmURL + `api_key=${this.api_key}` + `&query=${this.query}`)
             .then(response => {
                 //console.log('response...', response);
                 console.log('film:', response.data.results);
