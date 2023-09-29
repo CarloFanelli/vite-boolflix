@@ -17,21 +17,61 @@ export default {
             const vote1to5 = Math.round(vote / 2);
             return vote1to5;
         },
+        getLanguage(language) {
+            switch (language) {
+                case 'ja':
+                    language = "JP";
+                    break;
+                case 'en':
+                    language = "GB";
+                    break;
+                case 'zh':
+                    language = "CN";
+                    break;
+                case 'ko':
+                    language = "KR";
+                    break;
+                case 'hi':
+                    language = "IN";
+                    break;
+
+                default:
+                    language = language;
+            }
+            console.log(language);
+            return language
+        }
 
     },
 }
 </script>
 
 <template>
-    <div class="col-3 p-3 border">
-        <h5>film:</h5>
-        <p>titolo originale : {{ show.original_title }}</p>
+    <div class="col-3 py-3 border position-relative">
+        <div class="type">
+
+            <h5>{{ (show.original_title != null ? 'Film' : 'Serie TV') }}</h5>
+
+        </div>
+
+        <div class="original_title_name">
+            <p v-if="show.original_title != null">titolo originale : {{ show.original_title }}</p>
+            <p v-else>titolo originale : {{ show.original_name }}</p>
+        </div>
+
         <img :src="'https://image.tmdb.org/t/p/w154/' + show.poster_path" alt="">
-        <p>titolo : {{ show.title }}</p>
+
+        <div class="title_name">
+            <p v-if="show.title != null">titolo originale : {{ show.title }}</p>
+            <p v-else>titolo originale : {{ show.name }}</p>
+        </div>
+
         <div class="language">
-            <span>lingua :</span>
-            <img width="100" :alt="show.original_language"
-                :src="state.baseFlagUrl + (show.original_language === 'en' ? show.original_language = 'gb' : show.original_language).toUpperCase() + '.svg'" />
+            <p>lingua :</p>
+
+            <img width="44" :alt="this.getLanguage(show.original_language)"
+                :src="state.baseFlagUrl + (this.getLanguage(show.original_language).toUpperCase()) + '.svg'" />
+            <h4>{{ show.original_language }}</h4>
         </div>
 
 
@@ -45,4 +85,6 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../assets/scss/partials/variables' as *;
+</style>
