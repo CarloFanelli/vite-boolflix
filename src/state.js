@@ -57,6 +57,28 @@ export const state = reactive({
                 //console.log('serie tv: ', response.data.results);
                 this.tvList = response.data.results;
 
+                for (let i = 0; i < this.tvList.length; i++) {
+
+                    axios
+                        .get(`https://api.themoviedb.org/3/tv/${this.tvList[i].id}/credits?api_key=f09ece8e1bf00a0af6a649c3ccfd6bfa`)
+                        .then(response => {
+                            //console.log('cast ', this.tvList[i].title, response.data.cast);
+
+                            let cast = [];
+
+                            for (let j = 0; j < response.data.cast.length; j++) {
+
+                                //console.log(response.data.cast[j]);
+                                cast.push(response.data.cast[j].name)
+
+                            }
+
+                            //console.log(cast);
+                            this.tvList[i].cast = cast
+                            console.log(this.tvList);
+                        })
+                }
+
             })
             .catch(error => {
                 console.log('error : ', error);
