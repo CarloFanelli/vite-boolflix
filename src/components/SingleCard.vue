@@ -142,6 +142,7 @@ export default {
 
     height: 500px;
     position: relative;
+    font-family: $text_font;
 
     .type {
         position: relative;
@@ -217,59 +218,59 @@ export default {
 
 @keyframes rotateEnter {
     0% {
-        rotate: 0;
+        //rotate: 0;
         scale: 0;
     }
 
     10% {
-        rotate: calc($rotatin_deg * 1);
+        //rotate: calc($rotatin_deg * 1);
         scale: 10%;
     }
 
     20% {
-        rotate: calc($rotatin_deg * 2);
+        //rotate: calc($rotatin_deg * 2);
         scale: 20%;
     }
 
     30% {
-        rotate: calc($rotatin_deg * 3);
+        //rotate: calc($rotatin_deg * 3);
         scale: 30%;
     }
 
     40% {
-        rotate: calc($rotatin_deg * 4);
+        //rotate: calc($rotatin_deg * 4);
         scale: 40%;
 
     }
 
     50% {
-        rotate: calc($rotatin_deg * 5);
+        //rotate: calc($rotatin_deg * 5);
         scale: 50%;
 
     }
 
     60% {
-        rotate: calc($rotatin_deg * 6);
+        //rotate: calc($rotatin_deg * 6);
         scale: 60%;
     }
 
     70% {
-        rotate: calc($rotatin_deg * 7);
+        //rotate: calc($rotatin_deg * 7);
         scale: 70%;
     }
 
     80% {
-        rotate: calc($rotatin_deg * 8);
+        //rotate: calc($rotatin_deg * 8);
         scale: 80%;
     }
 
     90% {
-        rotate: calc($rotatin_deg * 9);
+        //rotate: calc($rotatin_deg * 9);
         scale: 90%;
     }
 
     100% {
-        rotate: calc($rotatin_deg * 10.5);
+        //rotate: calc($rotatin_deg * 10.5);
         scale: 100%;
     }
 }

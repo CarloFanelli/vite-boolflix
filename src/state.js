@@ -176,25 +176,31 @@ export const state = reactive({
     },
 
     filterResults(filter) {
-        console.log(this.filmList);
-        this.filmList.forEach((film, i) => {
+        const iteration = this.filmList.length;
+        console.log(iteration);
+        for (let i = 0; i < iteration; i++) {
 
-            if (!film.genres.includes(filter)) {
+            this.filmList.forEach((film, i) => {
 
-                this.filmList.splice(i, 1)
+                if (!film.genres.includes(filter)) {
 
-            }
-        });
+                    this.filmList.splice(i, 1)
+                    i--;
+                }
 
-        this.tvList.forEach((show, i) => {
+            });
 
-            if (!show.genres.includes(filter)) {
+            this.tvList.forEach((show, i) => {
 
-                this.tvList.splice(i, 1)
+                if (!show.genres.includes(filter)) {
 
-            }
-        });
+                    this.tvList.splice(i, 1)
+                    i--;
 
-        console.log(this.filmList);
+                }
+            });
+
+        }
     }
+
 })
