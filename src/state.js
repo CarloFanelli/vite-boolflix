@@ -9,6 +9,7 @@ export const state = reactive({
     querySpan: '',
     filmList: null,
     tvList: null,
+    catList: [],
     baseFlagUrl: 'http://purecatamphetamine.github.io/country-flag-icons/3x2/',
     baseImgUrl: 'https://image.tmdb.org/t/p/w780/',
 
@@ -58,11 +59,13 @@ export const state = reactive({
                                 genres.push(response.data.genres[j].name)
 
                             }
-                            console.log(genres);
+                            //console.log(genres);
                             this.filmList[i].genres = genres
 
                         });
                 }
+
+                this.fetchCat();
 
             })
             .catch(error => {
@@ -119,12 +122,9 @@ export const state = reactive({
                         });
                 }
 
-                console.log(this.tvList);
+                this.fetchCat();
 
-            }
-
-
-            )
+            })
             .catch(error => {
                 console.log('error : ', error);
             })
@@ -132,7 +132,69 @@ export const state = reactive({
         /* out from axios because .then it's asinc and start only when it recive datas  */
         this.querySpan = this.query;
 
+    },
+
+    fetchCat() {
+
+        /* film */
+        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.api_key}`)
+            .then(response => {
+
+                //console.log(response.data.genres);
+                //this.catList.push(response.data.genres)
+                response.data.genres.forEach(genre => {
+
+                    if (!this.catList.includes(genre.name)) {
+                        //console.log(genre.name);
+                        this.catList.push(genre.name)
+                    }
+
+                });
+                //console.log(this.catList);
+            })
+
+        /* serie */
+        axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=${this.api_key}`)
+            .then(response => {
+
+                //console.log(response.data.genres);
+                //this.catList.push(response.data.genres)
+                //console.log(this.catList);
+
+                response.data.genres.forEach(genre => {
+
+                    if (!this.catList.includes(genre.name)) {
+                        //console.log(genre.name);
+                        this.catList.push(genre.name)
+                    }
+
+                });
+            })
+
+        console.log(this.catList);
+
+    },
+
+    filterResults(filter) {
+        console.log(this.filmList);
+        this.filmList.forEach((film, i) => {
+
+            if (!film.genres.includes(filter)) {
+
+                this.filmList.splice(i, 1)
+
+            }
+        });
+
+        this.tvList.forEach((show, i) => {
+
+            if (!show.genres.includes(filter)) {
+
+                this.tvList.splice(i, 1)
+
+            }
+        });
+
+        console.log(this.filmList);
     }
-
-
 })
