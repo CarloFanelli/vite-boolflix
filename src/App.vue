@@ -24,7 +24,7 @@ export default {
   <AppHeader></AppHeader>
 
 
-  <div class="container d-flex gap-4">
+  <div class="container d-flex gap-4" @scroll="">
     <div class="w-25">
 
       <AppFilters></AppFilters>

@@ -17,9 +17,11 @@ export default {
 
         <form action="" @submit.prevent="$emit('performSearch')" class="">
 
-            <input type="text" v-model="state.query" class="w-50 mx-2">
-            <button type="submit" class="text-uppercase"><i class="fa fa-search" aria-hidden="true"></i>
+
+            <input type="text" v-model="state.query" class=" rounded-3 w-50 mx-2">
+            <button type="submit" class="rounded-circle text-uppercase"><i class="fa fa-search" aria-hidden="true"></i>
             </button>
+
         </form>
         <div class="text-center">
 
@@ -29,4 +31,21 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../assets/scss/partials/variables' as *;
+
+
+form {
+    input {
+
+        background: $type_bg;
+        color: white;
+
+    }
+
+    button {
+        color: white;
+        background: $bf_logo;
+    }
+}
+</style>

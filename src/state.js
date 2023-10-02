@@ -132,6 +132,8 @@ export const state = reactive({
         /* out from axios because .then it's asinc and start only when it recive datas  */
         this.querySpan = this.query;
 
+
+
     },
 
     fetchCat() {
